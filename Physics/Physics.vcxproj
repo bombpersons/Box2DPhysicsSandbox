@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3D0E71EB-8EEA-49AA-88B5-A837659E2E58}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Physics</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)bin\$(Configuration)\obj</IntDir>
+    <LibraryPath>$(ProjectDir)libs;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)bin\$(Configuration)\obj</IntDir>
+    <LibraryPath>$(ProjectDir)libs;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Box2D-d.lib;sfml-system-s-d.lib;sfml-window-s-d.lib;sfml-graphics-s-d.lib;gwen_staticd.lib;unittestd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir "$(TargetDir)data"
+xcopy "$(ProjectDir)data" "$(TargetDir)data" /s /Y</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy data files to build directory</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;SFML_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>Box2D.lib;sfml-system-s.lib;sfml-window-s.lib;sfml-graphics-s.lib;gwen_static.lib;unittest.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir "$(TargetDir)data"
+xcopy "$(ProjectDir)data" "$(TargetDir)data" /s /Y</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy data files to build directory</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Camera\Camera.cpp" />
+    <ClCompile Include="src\Controls\MenuBar.cpp" />
+    <ClCompile Include="src\Controls\PropertiesWindow.cpp" />
+    <ClCompile Include="src\Controls\ToolsWindow.cpp" />
+    <ClCompile Include="src\Entities\Entity.cpp" />
+    <ClCompile Include="src\Entities\EntityList.cpp" />
+    <ClCompile Include="src\Entities\Joints\DistanceJointEntity.cpp" />
+    <ClCompile Include="src\Entities\Joints\JointEntity.cpp" />
+    <ClCompile Include="src\Entities\Joints\MotorJointEntity.cpp" />
+    <ClCompile Include="src\Entities\Joints\WeldJointEntity.cpp" />
+    <ClCompile Include="src\Entities\PhysicsEntity.cpp" />
+    <ClCompile Include="src\Entities\ShapeEntity.cpp" />
+    <ClCompile Include="src\Entities\UIEntity.cpp" />
+    <ClCompile Include="src\Game\Game.cpp" />
+    <ClCompile Include="src\Game\OnDestroyListener.cpp" />
+    <ClCompile Include="src\Game\PhysicsGame.cpp" />
+    <ClCompile Include="src\Gwen\Renderer\SFML2.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Serialization\WorldSerializer.cpp" />
+    <ClCompile Include="src\Tools\BodyTypeTool.cpp" />
+    <ClCompile Include="src\Tools\CircleTool.cpp" />
+    <ClCompile Include="src\Tools\DensityTool.cpp" />
+    <ClCompile Include="src\Tools\DistanceJointTool.cpp" />
+    <ClCompile Include="src\Tools\FrictionTool.cpp" />
+    <ClCompile Include="src\Tools\MotorJointTool.cpp" />
+    <ClCompile Include="src\Tools\MoveTool.cpp" />
+    <ClCompile Include="src\Tools\PanTool.cpp" />
+    <ClCompile Include="src\Tools\PolygonTool.cpp" />
+    <ClCompile Include="src\Tools\RectangleTool.cpp" />
+    <ClCompile Include="src\Tools\RemoveTool.cpp" />
+    <ClCompile Include="src\Tools\RestitutionTool.cpp" />
+    <ClCompile Include="src\Tools\RotationTool.cpp" />
+    <ClCompile Include="src\Tools\SelectTool.cpp" />
+    <ClCompile Include="src\Tools\Tool.cpp" />
+    <ClCompile Include="src\Tools\WeldTool.cpp" />
+    <ClCompile Include="src\Tools\ZoomTool.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Camera\Camera.hpp" />
+    <ClInclude Include="include\Controls\MenuBar.hpp" />
+    <ClInclude Include="include\Controls\PropertiesWindow.hpp" />
+    <ClInclude Include="include\Controls\ToolsWindow.hpp" />
+    <ClInclude Include="include\Entities\Entity.hpp" />
+    <ClInclude Include="include\Entities\EntityList.hpp" />
+    <ClInclude Include="include\Entities\Joints\DistanceJointEntity.hpp" />
+    <ClInclude Include="include\Entities\Joints\JointEntity.hpp" />
+    <ClInclude Include="include\Entities\Joints\MotorJointEntity.hpp" />
+    <ClInclude Include="include\Entities\Joints\WeldJointEntity.hpp" />
+    <ClInclude Include="include\Entities\PhysicsEntity.hpp" />
+    <ClInclude Include="include\Entities\ShapeEntity.hpp" />
+    <ClInclude Include="include\Entities\UIEntity.hpp" />
+    <ClInclude Include="include\Game\Game.hpp" />
+    <ClInclude Include="include\Game\OnDestroyListener.hpp" />
+    <ClInclude Include="include\Game\PhysicsGame.hpp" />
+    <ClInclude Include="include\Serialization\WorldSerializer.hpp" />
+    <ClInclude Include="include\Tools\BodyTypeTool.hpp" />
+    <ClInclude Include="include\Tools\CircleTool.hpp" />
+    <ClInclude Include="include\Tools\DensityTool.hpp" />
+    <ClInclude Include="include\Tools\DistanceJointTool.hpp" />
+    <ClInclude Include="include\Tools\FrictionTool.hpp" />
+    <ClInclude Include="include\Tools\MotorJointTool.hpp" />
+    <ClInclude Include="include\Tools\MoveTool.hpp" />
+    <ClInclude Include="include\Tools\PanTool.hpp" />
+    <ClInclude Include="include\Tools\RemoveTool.hpp" />
+    <ClInclude Include="include\Tools\PolygonTool.hpp" />
+    <ClInclude Include="include\Tools\RectangleTool.hpp" />
+    <ClInclude Include="include\Tools\RestitutionTool.hpp" />
+    <ClInclude Include="include\Tools\RotationTool.hpp" />
+    <ClInclude Include="include\Tools\SelectTool.hpp" />
+    <ClInclude Include="include\Tools\Tool.hpp" />
+    <ClInclude Include="include\Tools\ToolEvent.hpp" />
+    <ClInclude Include="include\Tools\WeldTool.hpp" />
+    <ClInclude Include="include\Tools\ZoomTool.hpp" />
+    <ClInclude Include="include\Entities\EntityIDGenerator.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
